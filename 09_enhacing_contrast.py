@@ -33,3 +33,4 @@ for k in range(0, len(onlyfiles)):
     hsv_value[k] = cv2.cvtColor(hsv[k],cv2.COLOR_BGR2HSV).mean(axis=(0,1))
     
     
+x = np.vstack(hsv_value)
