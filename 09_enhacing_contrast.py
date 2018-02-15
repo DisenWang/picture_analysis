@@ -1,12 +1,9 @@
 import cv2 
-import numpy as np 
-
-# new try
 
 from os import listdir
 from os.path import isfile, join
 import numpy
-import cv2
+import pandas as pd 
 
 
 #read all images
@@ -33,4 +30,7 @@ for k in range(0, len(onlyfiles)):
     hsv_value[k] = cv2.cvtColor(hsv[k],cv2.COLOR_BGR2HSV).mean(axis=(0,1))
     
     
-x = np.vstack(hsv_value)
+x = numpy.vstack(hsv_value)
+
+df = pd.DataFrame(x)
+df.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output.csv")
