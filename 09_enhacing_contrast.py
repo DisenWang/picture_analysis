@@ -1,22 +1,35 @@
 import cv2 
 import numpy as np 
- 
-img = cv2.imread('/Users/disenwang/Github_stuff/picture_analysis/img/4191357.jpeg',) 
- 
- 
-hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+
+# new try
+
+from os import listdir
+from os.path import isfile, join
+import numpy
+import cv2
 
 
-img2 = cv2.imread('/Users/disenwang/Github_stuff/picture_analysis/img/4195712.jpeg',) 
- 
- 
-hsv2 = cv2.cvtColor(img2,cv2.COLOR_BGR2HSV)
+#read all images
+mypath='/Users/disenwang/Github_stuff/picture_analysis/img'
 
-output1=hsv.mean(axis=(0,1))
+onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
 
+images = numpy.empty(len(onlyfiles), dtype=object)
 
+hsv = numpy.empty(len(onlyfiles), dtype=object)
 
-output2=hsv2.mean(axis=(0,1))
+for n in range(0, len(onlyfiles)):
+  images[n] = cv2.imread( join(mypath,onlyfiles[n]) )
+  # convert to HSV color space
+  hsv[n] = cv2.cvtColor(images[n],cv2.COLOR_BGR2HSV)
+  
+  
+# Computer average HSV of each picture
+i = 99
+hsv_value = [[] for _ in range(i)]
 
-
-
+# I used average HSV value of all pixels as the HSV value of the image
+for k in range(0, len(onlyfiles)):
+    hsv_value[k] = cv2.cvtColor(hsv[k],cv2.COLOR_BGR2HSV).mean(axis=(0,1))
+    
+    
