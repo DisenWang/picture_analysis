@@ -21,7 +21,7 @@ for n in range(0, len(onlyfiles)):
   hsv[n] = cv2.cvtColor(images[n],cv2.COLOR_BGR2HSV)
   
   
-# Computer average HSV of each picture
+# Compute average HSV of each picture
 i = 99
 hsv_value = [[] for _ in range(i)]
 
@@ -34,3 +34,10 @@ x = numpy.vstack(hsv_value)
 
 df = pd.DataFrame(x)
 df.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output.csv")
+
+
+
+#Compute individual picture's hsv
+img1 = cv2.imread("/Users/disenwang/Github_stuff/picture_analysis/img/2595.jpg")
+
+hsv1 = cv2.cvtColor(img1,cv2.COLOR_BGR2HSV).mean(axis=(0,1))
