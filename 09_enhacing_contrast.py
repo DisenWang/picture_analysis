@@ -54,12 +54,24 @@ df2.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output3.csv")
 
 
 # Change the value of single image 
-mage = cv2.imread('../images/test/image_1.jpg')
-image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+img1 = cv2.imread("/Users/disenwang/Github_stuff/picture_analysis/img/148201.jpg")
+img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
 
-image[:,:,2] = 200 # Changes the V value
+img1[:,:,2] += 30 # Changes the V value
+out = cv2.cvtColor(img1, cv2.COLOR_HSV2BGR)
+cv2.imwrite("/Users/disenwang/Desktop/top 5/change values/B += 30.jpg",out)
 
-out = cv2.cvtColor(image, cv2.COLOR_HSV2BGR)
-cv2.imshow('image',out)
-k = cv2.waitKey(0)
-cv2.destroyAllWindows()
+
+
+
+img1 = cv2.imread("/Users/disenwang/Github_stuff/picture_analysis/img/148201.jpg")
+img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2HSV)
+
+img1[:,:,1] -= 20 # Changes the S value
+out = cv2.cvtColor(img1, cv2.COLOR_HSV2BGR)
+cv2.imwrite("/Users/disenwang/Desktop/top 5/change values/s -= 20.jpg",out)
+
+
+
+
+
