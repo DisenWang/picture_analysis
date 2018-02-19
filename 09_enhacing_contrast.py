@@ -22,22 +22,44 @@ for n in range(0, len(onlyfiles)):
   
   
 # Compute average HSV of each picture
-i = 99
+i = n+1
 hsv_value = [[] for _ in range(i)]
 
 # I used average HSV value of all pixels as the HSV value of the image
 for k in range(0, len(onlyfiles)):
-    hsv_value[k] = cv2.cvtColor(hsv[k],cv2.COLOR_BGR2HSV).mean(axis=(0,1))
+    hsv_value[k] = hsv[k].mean(axis=(0,1))
+    
     
     
 x = numpy.vstack(hsv_value)
 
 df = pd.DataFrame(x)
-df.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output.csv")
+df.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output2.csv")
 
 
 
-#Compute individual picture's hsv
-img1 = cv2.imread("/Users/disenwang/Github_stuff/picture_analysis/img/2595.jpg")
+# Compute individual picture's hsv
+img1 = cv2.imread("/Users/disenwang/Github_stuff/picture_analysis/img/148201.jpg")
 
 hsv1 = cv2.cvtColor(img1,cv2.COLOR_BGR2HSV).mean(axis=(0,1))
+
+
+
+# Read the name of images
+
+name_hsv = list(zip(onlyfiles,hsv_value))
+
+df2 = pd.DataFrame(name_hsv)
+df2.to_csv("/Users/disenwang/Github_stuff/picture_analysis/img_output3.csv")
+
+
+# Change the value of single image 
+mage = cv2.imread('../images/test/image_1.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+image[:,:,2] = 200 # Changes the V value
+
+out = cv2.cvtColor(image, cv2.COLOR_HSV2BGR)
+cv2.imshow('image',out)
+k = cv2.waitKey(0)
+cv2.destroyAllWindows()
